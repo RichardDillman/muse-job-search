@@ -4,8 +4,13 @@
   "private": true,
   "dependencies": {
     "react": "^16.6.3",
+    "react-bootstrap": "^0.32.4",
+    "react-bootstrap-typeahead": "^3.2.4",
+    "react-bootstrap4-modal": "^1.7.0",
     "react-dom": "^16.6.3",
-    "react-scripts": "2.1.1"
+    "react-scripts": "2.1.1",
+    "reactstrap": "^6.5.0",
+    "save-dev": "^2.0.0"
   },
   "scripts": {
     "start": "react-scripts start",
