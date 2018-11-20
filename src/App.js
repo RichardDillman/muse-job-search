@@ -4,7 +4,7 @@ import jobType from './data/jobType';
 import jobLevel from './data/jobLevel';
 import companySize from './data/companySize';
 import jobLocation from './data/jobLocation';
-import Autocomplete from './controllers/autoSuggest';
+import AutoComplete from './controllers/autoSuggest';
 import BootstrapModal from './controllers/modal';
 import JobCard from './controllers/jobCard';
 import Pagination from './controllers/pagination';
@@ -34,7 +34,7 @@ class App extends Component {
     };
   }
 
-  buildquery = (name, values) => {
+  buildQuery(name, values) {
     if (!this.state[values].length) {
       return '';
     }
@@ -43,10 +43,10 @@ class App extends Component {
 
   getJobs() {
     const API = 'https://www.themuse.com/api/public/jobs?';
-    const category = this.buildquery('category', 'jobTypeSelected');
-    const level = this.buildquery('level', 'jobLevelSelected');
-    const size = this.buildquery('size', 'companySizeSelected');
-    const location = this.buildquery('location', 'jobLocationSelected');
+    const category = this.buildQuery('category', 'jobTypeSelected');
+    const level = this.buildQuery('level', 'jobLevelSelected');
+    const size = this.buildQuery('size', 'companySizeSelected');
+    const location = this.buildQuery('location', 'jobLocationSelected');
     const page = this.state.page;
 
     fetch(`${API}page=${page}${category}${level}${size}${location}`)
@@ -60,7 +60,7 @@ class App extends Component {
       });
   }
 
-  handlePageination(nextPage) {
+  handlePagination(nextPage) {
     this.setState({ page: nextPage }, this.getJobs);
   }
 
@@ -98,7 +98,7 @@ class App extends Component {
     });
   }
 
-  handleInput = (name, items) => {
+  handleInput(name, items) {
     this.setState({ [name]: items });
   }
 
@@ -111,11 +111,11 @@ class App extends Component {
     }
   }
 
-  getPageination() {
+  getPagination() {
     if (this.state.results.length) {
-      return <Pagination current={this.state.page} total={this.state.pages} action={this.handlePageination.bind(this)} />
+      return <Pagination current={this.state.page} total={this.state.pages} action={this.handlePagination.bind(this)} />
     }
-    return;
+    return undefined;
   }
 
   render() {
@@ -132,33 +132,33 @@ class App extends Component {
               </div>
             </div>
 
-            {this.getPageination()}
+            {this.getPagination()}
 
             <form action="" method="GET">
               <div className="row">
-                  <Autocomplete
+                  <AutoComplete
                     list={this.state.jobType}
                     action={this.handleInput.bind(this, 'jobTypeSelected')}
                     placeHolder="Job Title..."
                     name="Job Title"
                   />
-                  <Autocomplete 
+                  <AutoComplete
                     list={this.state.jobLevel}
                     action={this.handleInput.bind(this, 'jobLevelSelected')}
                     placeHolder="Experience Level..."
                     name="Experience Level"
                   />
-                  <Autocomplete
+                  <AutoComplete
                     list={this.state.companySize}
                     action={this.handleInput.bind(this, 'companySizeSelected')}
                     placeHolder="Company Size..."
                     name="Company Size"
                   />
-                  <Autocomplete
+                  <AutoComplete
                     list={this.state.jobLocation}
                     action={this.handleInput.bind(this, 'jobLocationSelected')}
-                    placeHolder="Loction..."
-                    name="Loction"
+                    placeHolder="Location..."
+                    name="Location"
                   />
               </div>
             </form>

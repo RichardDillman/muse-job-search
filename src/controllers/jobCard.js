@@ -1,7 +1,7 @@
 import React from 'react';
 
 class JobCard extends React.Component {
-  dateDiff = (published_date) => {		
+  dateDiff(published_date) {
     const diff = new Date() - new Date(published_date);		
     const days = Math.floor(diff / 86400000);
     return days > 0 ? `${days} days ago.` : 'today.';

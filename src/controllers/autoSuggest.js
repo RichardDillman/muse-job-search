@@ -3,7 +3,7 @@ import { Typeahead } from 'react-bootstrap-typeahead';
 import 'react-bootstrap-typeahead/css/Typeahead.css';
 import 'react-bootstrap-typeahead/css/Typeahead-bs4.css';
 
-class Autocomplete extends React.Component {
+class AutoComplete extends React.Component {
   state = {
     multiple: true
   };
@@ -26,4 +26,4 @@ class Autocomplete extends React.Component {
   }
 }
 
-export default Autocomplete;
+export default AutoComplete;
